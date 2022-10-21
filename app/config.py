@@ -1,4 +1,5 @@
 import os
+from app import BASEDIR
 
 class Config(object):
     DEBUG = False
