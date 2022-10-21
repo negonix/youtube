@@ -1,0 +1,17 @@
+import os
+
+class Config(object):
+    DEBUG = False
+    TESTING = False
+    SECRET_KEY = os.environ.get('SECRET_KEY')
+    SESSION_COOKIE_SECURE = True
+    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(BASEDIR, 'app/data.sqlite')}"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+class ProductionConfig(Config):
+    pass
+
+class DevelopmentConfig(Config):
+    DEBUG = True
+    SESSION_COOKIE_SECURE = False
+    SECRET_KEY = "B\xb2?.\xdf\x9f\xa7m\xf8\x8a%\xf7\xc4\xfa\x91"
