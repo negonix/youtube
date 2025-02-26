@@ -20,11 +20,12 @@
 
         button.addEventListener('click', (e) => {
             let id = id_input.value;
+            let url;
             if (id.startsWith("http")) {
-                const url = id;
+                url = id;
             }
             else {
-                const url = `https://www.youtube.com/embed/${id}`;
+                url = `https://www.youtube.com/embed/${id}`;
             }
             iframe.src = url;
         })
