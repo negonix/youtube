@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube</title>
+</head>
+
+<body>
+    <input id="id" placeholder="enter video id" type="text">
+    <input id="button" type="button" value="Watch">
+
+    <iframe width="1280" height="720">
+    </iframe>
+    <script>
+        const button = document.getElementById("button");
+        const id_input = document.getElementById("id");
+        const iframe = document.querySelector("iframe")
+
+        button.addEventListener('click', (e) => {
+            console.log('clicked')
+            let id = id_input.value;
+            console.log(id)
+            let url = `https://www.youtube.com/embed/${id}`;
+            console.log(url)
+            iframe.src = url;
+        })
+    </script>
+</body>
+
+</html>
