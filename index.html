@@ -19,11 +19,13 @@
         const iframe = document.querySelector("iframe")
 
         button.addEventListener('click', (e) => {
-            console.log('clicked')
             let id = id_input.value;
-            console.log(id)
-            let url = `https://www.youtube.com/embed/${id}`;
-            console.log(url)
+            if (id.startsWith("http")) {
+                const url = id;
+            }
+            else {
+                const url = `https://www.youtube.com/embed/${id}`;
+            }
             iframe.src = url;
         })
     </script>
