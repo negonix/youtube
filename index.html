@@ -11,7 +11,7 @@
     <input id="id" placeholder="enter video id" type="text">
     <input id="button" type="button" value="Watch">
 
-    <iframe width="420" height="315">
+    <iframe width="1280" height="720">
     </iframe>
     <script>
         const button = document.getElementById("button");
@@ -22,11 +22,9 @@
             let id = id_input.value;
             let url;
             if (id.startsWith("http")) {
-                url = id;
+                id = id.split('?v=')[1];
             }
-            else {
-                url = `https://www.youtube.com/embed/${id}`;
-            }
+            url = `https://www.youtube.com/embed/${id}`;
             iframe.src = url;
         })
     </script>
