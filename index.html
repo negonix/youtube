@@ -12,13 +12,13 @@
         <input id="id" placeholder="enter video id" type="text">
     </div>
     <div>
-          <label for="size">Choose a size:</label>
-          <select name="size" id="size">
+        <label for="size">Choose a size:</label>
+        <select name="size" id="size">
             <option value="640x360">360x640</option>
             <option selected="selected" value="854x480">480x854</option>
             <option value="1280x720">720x1280</option>
             <option value="1920x1080">1080x1920</option>
-          </select>
+        </select>
     </div>
     <div>
         <input id="submit" type="button" value="Watch">
@@ -33,18 +33,43 @@
         const submit = document.getElementById("submit");
         const id_input = document.getElementById("id");
         const iframe = document.getElementById("iframe");
+        const size = document.getElementById("size");
+
+        function returnVideoId(string) {
+            let id;
+            if (string.startsWith("http")) {
+                return string.split('?v=')[1];
+            } else {
+                return string;
+            }
+        }
+        function setIframeSize() {
+            iframe.width = size.value.split("x")[0];
+            iframe.height = size.value.split("x")[1];
+        }
+        function setIframeSrc(id) {
+            iframe.src = `https://www.youtube.com/embed/${id}`;
+        }
+
+        function queryParams() {
+            const url = new URL(window.location.href);
+            const video = url.searchParams.get("video");
+            if (video) {
+                setIframeSrc(video)
+            }
+        }
+
+        setIframeSize();
+        queryParams()
+
+
+
+
 
         submit.addEventListener('click', (e) => {
-            const size = document.getElementById("size").value;
-            iframe.width= size.split("x")[0];
-            iframe.height = size.split("x")[1];
-            let id = id_input.value;
-            let url;
-            if (id.startsWith("http")) {
-                id = id.split('?v=')[1];
-            }
-            url = `https://www.youtube.com/embed/${id}`;
-            iframe.src = url;
+            setIframeSize();
+            let id = returnVideoId(id_input.value);
+            setIframeSrc(id);
         })
     </script>
 </body>
