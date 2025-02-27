@@ -8,17 +8,36 @@
 </head>
 
 <body>
-    <input id="id" placeholder="enter video id" type="text">
-    <input id="button" type="button" value="Watch">
+    <div>
+        <input id="id" placeholder="enter video id" type="text">
+    </div>
+    <div>
+          <label for="size">Choose a size:</label>
+          <select name="size" id="size">
+            <option value="640x360">360x640</option>
+            <option selected="selected" value="854x480">480x854</option>
+            <option value="1280x720">720x1280</option>
+            <option value="1920x1080">1080x1920</option>
+          </select>
+    </div>
+    <div>
+        <input id="submit" type="button" value="Watch">
+    </div>
+    <div>
+        <iframe id="iframe">
+        </iframe>
+    </div>
 
-    <iframe width="1280" height="720">
-    </iframe>
+
     <script>
-        const button = document.getElementById("button");
+        const submit = document.getElementById("submit");
         const id_input = document.getElementById("id");
-        const iframe = document.querySelector("iframe")
+        const iframe = document.getElementById("iframe");
 
-        button.addEventListener('click', (e) => {
+        submit.addEventListener('click', (e) => {
+            const size = document.getElementById("size");
+            iframe.style.width= size.split("x")[0];
+            iframe.style.height = size.split("x")[1];
             let id = id_input.value;
             let url;
             if (id.startsWith("http")) {
