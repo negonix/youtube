@@ -35,7 +35,7 @@
         const iframe = document.getElementById("iframe");
 
         submit.addEventListener('click', (e) => {
-            const size = document.getElementById("size");
+            const size = document.getElementById("size").value;
             iframe.style.width= size.split("x")[0];
             iframe.style.height = size.split("x")[1];
             let id = id_input.value;
