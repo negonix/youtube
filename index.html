@@ -24,7 +24,7 @@
         <input id="submit" type="button" value="Watch">
     </div>
     <div>
-        <iframe id="iframe">
+        <iframe id="iframe" allow="fullscreen;">
         </iframe>
     </div>
 
@@ -62,12 +62,11 @@
         setIframeSize();
         queryParams()
 
-
-
-
+        size.addEventListener('change', (e) => {
+            setIframeSize();
+        })
 
         submit.addEventListener('click', (e) => {
-            setIframeSize();
             let id = returnVideoId(id_input.value);
             setIframeSrc(id);
         })
