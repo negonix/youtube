@@ -1,6 +1,5 @@
 from flask import Flask
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
 from os import path
 
 BASEDIR = path.dirname(path.dirname(path.abspath(__file__)))
@@ -12,7 +11,5 @@ if app.config["ENV"] == "development":
     app.config.from_object("app.config.DevelopmentConfig")
 else:
     app.config.from_object("app.config.ProductionConfig")
-
-db = SQLAlchemy(app)
 
 from app import views

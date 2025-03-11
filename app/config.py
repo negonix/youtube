@@ -6,8 +6,6 @@ class Config(object):
     TESTING = False
     SECRET_KEY = os.environ.get('SECRET_KEY')
     SESSION_COOKIE_SECURE = True
-    SQLALCHEMY_DATABASE_URI = f"sqlite:///{os.path.join(BASEDIR, 'app/data.sqlite')}"
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class ProductionConfig(Config):
     pass

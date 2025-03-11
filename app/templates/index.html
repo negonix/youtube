@@ -1,5 +1,78 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block content %}
-<h1>Welcome to index</h1>
-{% endblock content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube</title>
+    <style>
+    </style>
+</head>
+
+<body>
+    <div>
+        <input id="id" placeholder="enter video id" type="text">
+    </div>
+    <div class="">
+        <label for="size">Choose a size:</label>
+        <select name="size" id="size">
+            <option value="640x360">360x640</option>
+            <option value="854x480">480x854</option>
+            <option selected="selected" value="1280x720">720x1280</option>
+            <option value="1920x1080">1080x1920</option>
+        </select>
+    </div>
+    <div>
+        <input id="submit" type="button" value="Watch">
+    </div>
+    <div class="iframe">
+        <iframe id="iframe" allow="fullscreen;">
+        </iframe>
+    </div>
+
+
+    <script>
+        const submit = document.getElementById("submit");
+        const id_input = document.getElementById("id");
+        const iframe = document.getElementById("iframe");
+        const size = document.getElementById("size");
+
+        function returnVideoId(string) {
+            let id;
+            if (string.startsWith("http")) {
+                return string.split('?v=')[1];
+            } else {
+                return string;
+            }
+        }
+        function setIframeSize() {
+            iframe.width = size.value.split("x")[0];
+            iframe.height = size.value.split("x")[1];
+        }
+        function setIframeSrc(id) {
+            iframe.src = `https://www.youtube.com/embed/${id}`;
+        }
+
+        function queryParams() {
+            const url = new URL(window.location.href);
+            const video = url.searchParams.get("video");
+            if (video) {
+                setIframeSrc(video)
+            }
+        }
+
+        setIframeSize();
+        queryParams()
+
+        size.addEventListener('change', (e) => {
+            setIframeSize();
+        })
+
+        submit.addEventListener('click', (e) => {
+            let id = returnVideoId(id_input.value);
+            setIframeSrc(id);
+        })
+    </script>
+</body>
+
+</html>
